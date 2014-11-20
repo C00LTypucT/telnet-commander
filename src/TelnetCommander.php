@@ -1,6 +1,8 @@
 <?php
 namespace Avin\TelnetCommander;
 
+use Exception;
+
 class TelnetCommander
 {
 
@@ -9,7 +11,6 @@ class TelnetCommander
         $socket,
         $commands = array(),
         $debug = false,
-        $timeout = 10,
         $username = 'admin',
         $password = 'password',
         $hasAuth = true,
@@ -128,12 +129,12 @@ class TelnetCommander
      */
     public function setCommands($commands)
     {
-        if(is_array($commands)){
-            if(!$commands){
+        if (is_array($commands)) {
+            if (!$commands) {
                 throw new Exception("Empty command-list. Exit");
             }
-            if (is_array($commands[0])){
-                if (array_key_exists('promt', $commands[0])){
+            if (is_array($commands[0])) {
+                if (array_key_exists('promt', $commands[0])) {
                     $this->setShellPromt($commands[0]['promt']);
                 }
             }
@@ -200,10 +201,10 @@ class TelnetCommander
         }
 
         //Setup shell-promt for next command
-        if ($commands = $this->commands){
+        if ($commands = $this->commands) {
             $command = array_shift($commands);
-            if(is_array($command)){
-                if (array_key_exists('promt', $command)){
+            if (is_array($command)) {
+                if (array_key_exists('promt', $command)) {
                     $this->setShellPromt($command['promt']);
                 }
             }
