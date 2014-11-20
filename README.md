@@ -34,9 +34,7 @@ $commands = [
 try {
         //Setup connection
         $commander = new TelnetCommander($host, $port);
-        $commander->setTimeout(5);
         $commander->setHasAuth(false);
-        $commander->setDebug(true);
         $commander->connect();
 
         //Set commands
@@ -53,12 +51,5 @@ try {
         echo $e->getMessage();
     }
 
-}
 
 ```
-
-License
-----
-
-MIT
-
