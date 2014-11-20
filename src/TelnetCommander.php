@@ -234,9 +234,9 @@ class TelnetCommander
             echo "Connection to [{$this->server}:{$this->port}]... ";
         }
         $this->createSocket();
-        $result = @socket_connect($this->socket, $this->server, $this->port);
+        $result = socket_connect($this->socket, $this->server, $this->port);
         if ($result === false) {
-            throw new Exception("Could not execute socket_create(): Reason: " . socket_strerror(socket_last_error()));
+            throw new Exception("Could not execute socket_connect(): Reason: " . socket_strerror(socket_last_error()));
         }
     }
 
@@ -247,7 +247,7 @@ class TelnetCommander
      */
     private function createSocket()
     {
-        $this->socket = @socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        $this->socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
         if ($this->socket === false) {
             throw new Exception("Could not execute socket_create(): Reason: " . socket_strerror(socket_last_error()));
         }
